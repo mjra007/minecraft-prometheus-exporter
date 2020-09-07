@@ -82,21 +82,7 @@ class EntitiesTest {
 				new String[] {worldName, "minecart", "false", "true"})).isEqualTo(numOfMinecarts);
 	}
 
-	@Test
-	void expectArmorStandAliveToBeFalse() {
-		final String worldName = "world_name";
-		final long numOfArmorStands = 11;
-		List<Entity> mockedEntities = new ArrayList<>(mockEntities(numOfArmorStands, EntityType.ARMOR_STAND));
 
-		World world = mock(World.class);
-		when(world.getName()).thenReturn(worldName);
-		when(world.getEntities()).thenReturn(mockedEntities);
-
-		entitiesMetric.collect(world);
-
-		assertThat(CollectorRegistry.defaultRegistry.getSampleValue(ENTITY_METRIC_NAME, METRIC_LABELS,
-				new String[] {worldName, "armor_stand", "false", "true"})).isEqualTo(numOfArmorStands);
-	}
 
 	@Test
 	void givenUnknownTypeExpectNoError() {

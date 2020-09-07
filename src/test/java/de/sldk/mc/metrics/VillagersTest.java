@@ -42,8 +42,8 @@ class VillagersTest {
 		final long numOfPlainsNoneLevel2 = 3;
 
 		List<Villager> mockedVillagers = Stream.concat(
-				mockVillagers(numOfDesertFarmersLevel1, Villager.Type.DESERT, Villager.Profession.FARMER, 1),
-				mockVillagers(numOfPlainsNoneLevel2, Villager.Type.PLAINS, Villager.Profession.NONE, 2))
+				mockVillagers(numOfDesertFarmersLevel1, Villager.Profession.FARMER),
+				mockVillagers(numOfPlainsNoneLevel2,  Villager.Profession.BUTCHER ))
 				.collect(Collectors.toList());
 
 		when(world.getName()).thenReturn(worldName);
@@ -57,16 +57,14 @@ class VillagersTest {
 				new String[] {worldName, "plains", "none", "2"})).isEqualTo(numOfPlainsNoneLevel2);
 	}
 
-	private Stream<Villager> mockVillagers(long count, Villager.Type type, Villager.Profession profession, int level) {
-		return LongStream.range(0, count).mapToObj(i -> mockVillager(type, profession, level));
+	private Stream<Villager> mockVillagers(long count, Villager.Profession profession) {
+		return LongStream.range(0, count).mapToObj(i -> mockVillager(profession));
 	}
 
-	private Villager mockVillager(Villager.Type type, Villager.Profession profession, int level) {
+	private Villager mockVillager( Villager.Profession profession) {
 		Villager e = mock(Villager.class);
 		when(e.getType()).thenReturn(EntityType.VILLAGER);
-		when(e.getVillagerType()).thenReturn(type);
 		when(e.getProfession()).thenReturn(profession);
-		when(e.getVillagerLevel()).thenReturn(level);
 		return e;
 	}
 }

@@ -30,11 +30,6 @@ public class Entities extends WorldMetric {
             .labelNames("world", "type", "alive", "spawnable")
             .create();
 
-    /**
-     * Override the value returned by {@link EntityType#isAlive()}.
-     */
-    private static final Map<EntityType, Boolean> ALIVE_OVERRIDE = singletonMap(EntityType.ARMOR_STAND, false);
-
     public Entities(Plugin plugin) {
         super(plugin, ENTITIES);
     }
@@ -56,6 +51,6 @@ public class Entities extends WorldMetric {
     }
 
     private boolean isEntityTypeAlive(EntityType type) {
-        return ALIVE_OVERRIDE.containsKey(type) ? ALIVE_OVERRIDE.get(type) : type.isAlive();
+        return  type.isAlive();
     }
 }
