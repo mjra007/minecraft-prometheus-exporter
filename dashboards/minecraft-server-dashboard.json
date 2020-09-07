@@ -796,11 +796,11 @@
       "steppedLine": true,
       "targets": [
         {
-          "expr": "sum (mc_villagers_total{server_name=~\"$server_name\"}) by (world, level, profession)",
+          "expr": "sum (mc_villagers_total{server_name=~\"$server_name\"}) by (world, profession)",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 2,
-          "legendFormat": "{{world}}:  {{profession}}  (lv{{level}})",
+          "legendFormat": "{{world}}:  {{profession}}  ",
           "metric": "mc_entities_total",
           "refId": "A",
           "step": 4
