@@ -34,6 +34,7 @@ public class Villagers extends WorldMetric {
     public void collect(World world) {
         Map<VillagerGrouping, Long> mapVillagerGroupingToCount = world
                 .getEntitiesByClass(Villager.class).stream()
+                .filter(s->s.getProfession()!=null)//Some modded villagers have profession as null for some reason
                 .collect(Collectors.groupingBy(VillagerGrouping::new, Collectors.counting()));
 
         mapVillagerGroupingToCount.forEach((grouping, count) ->
@@ -51,7 +52,7 @@ public class Villagers extends WorldMetric {
         private final Villager.Profession profession;
 
         VillagerGrouping(Villager villager) {
-            this.profession = villager.getProfession();
+            profession = villager.getProfession();
         }
 
         @Override
