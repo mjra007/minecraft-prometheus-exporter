@@ -3,6 +3,7 @@ package de.sldk.mc.config;
 import de.sldk.mc.MetricRegistry;
 import de.sldk.mc.PrometheusExporter;
 import de.sldk.mc.metrics.*;
+import org.bukkit.block.BlockState;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.Plugin;
 
@@ -15,6 +16,7 @@ public class PrometheusExporterConfig {
     public static final PluginConfig<String> HOST = new PluginConfig<>("host", "localhost");
     public static final PluginConfig<Integer> PORT = new PluginConfig<>("port", 9225);
     public static final List<MetricConfig> METRICS = Arrays.asList(
+            metricConfig("tileentities_total", true, TileEntities::new),
             metricConfig("entities_total", true, Entities::new),
             metricConfig("villagers_total", true, Villagers::new),
             metricConfig("loaded_chunks_total", true, LoadedChunks::new),
